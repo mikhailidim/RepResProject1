@@ -210,7 +210,8 @@ hr {
 <p>Data used for this study may be found <a href="https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip">here</a>. Data source was provided as part of Reproducable Research Course and was awailable at <em>Sunday, March 6, 2016</em>.
 Code below, checks if CSV data availaable in work directory and loads source into <em>activity</em> data farme. Code all necessary steps to prepare raw data.</p>
 
-<pre><code class="r">  # Source data  is not available in work directory.
+<pre><code class="r">  options(scipen=1,digits=6)
+  # Source data  is not available in work directory.
   if (!file.exists(&quot;activity.csv&quot;)) {
     tfile &lt;- tempfile()
     # Check platfoerm to handle HTTPs protocol properly
@@ -228,7 +229,7 @@ Code below, checks if CSV data availaable in work directory and loads source int
   activity&lt;-read.csv(&quot;activity.csv&quot;)
 </code></pre>
 
-<p>Data set contans 3 variables, where variable date is a <code>class(activity$date)</code> of characters.</p>
+<p>Data set contans 3 variables, where variable date is a factor of characters.</p>
 
 <pre><code class="r"> str(activity)
 </code></pre>
@@ -243,6 +244,26 @@ Code below, checks if CSV data availaable in work directory and loads source int
 
 <pre><code class="r"> activity$date &lt;- as.POSIXct(as.character(activity$date),&quot;%Y-%m-%d&quot;)
 </code></pre>
+
+<h2>Eaxmine tidy data</h2>
+
+<p>Compute daily activity using <a href="https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html">dplyr</a> library</p>
+
+<pre><code class="r">  require(dplyr)
+  stepsbyday &lt;- group_by(activity, date) %&gt;% 
+    summarize(steps=sum(steps,na.rm= TRUE))
+</code></pre>
+
+<p>Dayly based statistics gives us <strong>9350</strong> as average amount of steps  with median equal to  <strong>10400</strong>. Othere summary facts are below:</p>
+
+<pre><code class="r">summary(stepsbyday$steps)
+</code></pre>
+
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##       0    6780   10400    9350   12800   21200
+</code></pre>
+
+<h2>Impute missing mesurements</h2>
 
 </body>
 

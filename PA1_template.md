@@ -8,6 +8,7 @@ Code below, checks if CSV data availaable in work directory and loads source int
 
 
 ```r
+  options(scipen=1,digits=6)
   # Source data  is not available in work directory.
   if (!file.exists("activity.csv")) {
     tfile <- tempfile()
@@ -26,7 +27,7 @@ Code below, checks if CSV data availaable in work directory and loads source int
   activity<-read.csv("activity.csv")
 ```
 
-Data set contans 3 variables, where variable date is a `class(activity$date)` of characters.
+Data set contans 3 variables, where variable date is a factor of characters.
 
 ```r
  str(activity)
@@ -44,6 +45,25 @@ I've converted varaibe date to POSIXct format to enable proper timelaine analysi
 ```r
  activity$date <- as.POSIXct(as.character(activity$date),"%Y-%m-%d")
 ```
-## 
+## Eaxmine tidy data 
+Compute daily activity using [dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) library
+
+```r
+  require(dplyr)
+  stepsbyday <- group_by(activity, date) %>% 
+    summarize(steps=sum(steps,na.rm= TRUE))
+```
+Dayly based statistics gives us __9350__ as average amount of steps  with median equal to  __10400__. Othere summary facts are below:
+
+```r
+summary(stepsbyday$steps)
+```
+
+```
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##       0    6780   10400    9350   12800   21200
+```
+
+## Impute missing mesurements
 
 
