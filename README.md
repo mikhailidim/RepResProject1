@@ -1,3 +1,10 @@
 # Coursera Data Science Track
-### Reproducable Research, Project 1
+__Reproducable Research, Project 1__
 
+### Project descripton
+This project is a part of (Reproducible Research)[https://www.coursera.org/learn/reproducable-reserach] course.
+Project demonstrates features of (knitr)[http://yihui.name/knitr/] librarty to produce research papers enriched with study data processing code, plots, and calcualtaions. 
+
+R markdown template source is  (PA1_template.Rmd).
+Resulting Markdown document: (PA1_template.Rmd).
+Document for pubication: (PA1_template.html)
