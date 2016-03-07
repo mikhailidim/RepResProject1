@@ -8,3 +8,10 @@ Project demonstrates features of [knitr](http://yihui.name/knitr/) librarty to p
 - R markdown template source:  [PA1_template.Rmd](PA1_template.Rmd)
 - Resulting Markdown document: [PA1_template.md](PA1_template.md)
 - Document for pubication:     [PA1_template.html](PA1_template.html)
+
+### How to run
+Load library knitr and then run command:
+```R
+library(knitr)
+knitr2html("PA1_template.Rmd")
+```
