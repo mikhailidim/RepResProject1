@@ -1,5 +1,5 @@
 # Coursera Data Science Track
-__Reproducable Research, Project 1__
+__Reproducible Research, Project 1__
 
 ### Project descripton
 This project is a part of [Reproducible Research](https://www.coursera.org/learn/reproducable-reserach) course.
